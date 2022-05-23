@@ -3,7 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const doodler = document.createElement("div");
 
   let doddleLeftSpace = 50; //giving a left space
-  let doddleBottomSpace = 150; //giving a bottom space
+  let startPoint = 150;
+  let doddleBottomSpace = startPoint; //giving a bottom space
   let isGameOver = false;
   let platforms = [];
   let upTimerId;
@@ -61,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
     upTimerId = setInterval(function () {
       doddleBottomSpace += 20;
       doodler.style.bottom = doddleBottomSpace + "px";
-      if (doddleBottomSpace > 350) {
+      if (doddleBottomSpace > startPoint + 200) {
         fall(); //⬇︎
       }
     }, 30);
@@ -83,8 +84,12 @@ document.addEventListener("DOMContentLoaded", () => {
           doddleBottomSpace >= platform.bottom &&
           doddleBottomSpace <= platform.bottom + 15 &&
           doddleLeftSpace + 60 >= platform.left &&
-          doddleLeftSpace <= platform.left + 85
+          doddleLeftSpace <= platform.left + 85 &&
+          !isJumping
         ) {
+          console.log("Landed");
+          start = doddleBottomSpace;
+          jump();
         }
       });
     }, 30);
