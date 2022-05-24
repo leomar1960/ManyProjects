@@ -1,0 +1,8 @@
+body {
+	background-color: darkgray;
+}
+
+.grid {
+	display: flex;
+	flex-wrap: wrap;
+}
