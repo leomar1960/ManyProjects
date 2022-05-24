@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (birdBottom < 500) birdBottom += 50;
 		bird.style.bottom = birdBottom + "px";
 	}
+
 	document.addEventListener("keyup", control);
 
 	function generateObstacles() {
@@ -66,8 +67,8 @@ document.addEventListener("DOMContentLoaded", () => {
 				(obstacleLeft > 200 &&
 					obstacleLeft < 280 &&
 					birdLeft === 220 &&
-					birdBottom < obstacleBottom + 153) ||
-				birdBottom > obstacleBottom + gap - 200 ||
+					(birdBottom < obstacleBottom + 153 ||
+						birdBottom > obstacleBottom + gap - 200)) ||
 				birdBottom === 0
 			) {
 				gameOver();
@@ -86,5 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		console.log("gameover");
 		isGameOver = true;
 		document.removeEventListener("keyup", control);
+		ground.classList.add("ground");
+		ground.classList.remove("ground-moving");
 	}
 });
