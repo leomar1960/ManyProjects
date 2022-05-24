@@ -1,28 +1,38 @@
+body {
+	margin: 0;
+}
 .game-container {
-  width: 500px;
-  height: 730px;
-  background-color: pink;
-  position: absolute;
+	width: 500px;
+	height: 730px;
+	background-color: pink;
+	position: absolute;
 }
 
 .sky {
-  width: 500px;
-  height: 580px;
-  position: absolute;
-  background-color: blue;
+	width: 500px;
+	height: 580px;
+	position: absolute;
+	background-color: lightblue;
 }
 
 .ground {
-  width: 500px;
-  height: 150px;
-  background-color: brown;
-  position: absolute;
-  top: 580px;
+	width: 500px;
+	height: 150px;
+	position: absolute;
+	top: 580px;
+	background-image: url(./images/bottom-background.png);
 }
 
 .bird {
-  background-color: yellow;
-  width: 60px;
-  height: 45px;
-  position: absolute;
+	width: 60px;
+	height: 45px;
+	position: absolute;
+	background-image: url(./images/flappy-bird.png);
+}
+
+.obstacle {
+	position: absolute;
+	width: 60px;
+	height: 300px;
+	background-image: url(./images/flappybird-pipe.png);
 }
