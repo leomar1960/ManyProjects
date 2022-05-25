@@ -1,9 +1,29 @@
 document.addEventListener("DOMContentLoaded", () => {
 	//card options
-	const cardsArray = [
+	const cardArray = [
 		{
 			name: "fries",
 			img: "images/fries.png",
+		},
+		{
+			name: "cheeseburger",
+			img: "images/cheeseburger.png",
+		},
+		{
+			name: "ice-cream",
+			img: "images/ice-cream.png",
+		},
+		{
+			name: "pizza",
+			img: "images/pizza.png",
+		},
+		{
+			name: "milkshake",
+			img: "images/milkshake.png",
+		},
+		{
+			name: "hotdog",
+			img: "images/hotdog.png",
 		},
 		{
 			name: "fries",
@@ -11,46 +31,27 @@ document.addEventListener("DOMContentLoaded", () => {
 		},
 		{
 			name: "cheeseburger",
-			img: "./images/cheeseburger.png",
-		},
-		{
-			name: "cheeseburger",
-			img: "./images/cheeseburger.png",
-		},
-		{
-			name: "hotdog",
-			img: "./images/hotdog.png",
-		},
-		{
-			name: "hotdog",
-			img: "./images/hotdog.png",
-		},
-		{
-			name: "milkshake",
-			img: "./images/milkshake.png",
-		},
-		{
-			name: "milkshake",
-			img: "./images/milkshake.png",
-		},
-		{
-			name: "pizza",
-			img: "./images/pizza.png",
-		},
-		{
-			name: "pizza",
-			img: "./images/pizza.png",
+			img: "images/cheeseburger.png",
 		},
 		{
 			name: "ice-cream",
-			img: "./images/ice-cream.png",
+			img: "images/ice-cream.png",
 		},
 		{
-			name: "ice-cream",
-			img: "./images/ice-cream.png",
+			name: "pizza",
+			img: "images/pizza.png",
+		},
+		{
+			name: "milkshake",
+			img: "images/milkshake.png",
+		},
+		{
+			name: "hotdog",
+			img: "images/hotdog.png",
 		},
 	];
-	cardsArray.sort(() => 0.5 * Math.random());
+
+	cardArray.sort(() => 0.5 - Math.random());
 
 	const grid = document.querySelector(".grid");
 	const resultDisplay = document.querySelector("#result");
@@ -58,10 +59,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	let cardsChosenId = [];
 	let cardsWon = [];
 
-	// create you board
-
-	function createYourBoard() {
-		for (let i = 0; i < cardsArray.length; i++) {
+	//create your board
+	function createBoard() {
+		for (let i = 0; i < cardArray.length; i++) {
 			const card = document.createElement("img");
 			card.setAttribute("src", "images/blank.png");
 			card.setAttribute("data-id", i);
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	}
 
-	// check for matches
+	//check for matches
 	function checkForMatch() {
 		const cards = document.querySelectorAll("img");
 		const optionOneId = cardsChosenId[0];
@@ -92,25 +92,24 @@ document.addEventListener("DOMContentLoaded", () => {
 			cards[optionTwoId].setAttribute("src", "images/blank.png");
 			alert("Sorry, try again");
 		}
-
 		cardsChosen = [];
 		cardsChosenId = [];
 		resultDisplay.textContent = cardsWon.length;
-		if (cardsWon.length === cardsArray.length / 2) {
-			resultDisplay.textContent = "Congratulation You found them all!!";
+		if (cardsWon.length === cardArray.length / 2) {
+			resultDisplay.textContent = "Congratulations! You found them all!";
 		}
 	}
 
-	//flip you card
-	function flipCard(e) {
+	//flip your card
+	function flipCard() {
 		let cardId = this.getAttribute("data-id");
-		cardsChosen.push(cardsArray[cardId].name);
+		cardsChosen.push(cardArray[cardId].name);
 		cardsChosenId.push(cardId);
-		this.setAttribute("src", cardsArray[cardId].img);
+		this.setAttribute("src", cardArray[cardId].img);
 		if (cardsChosen.length === 2) {
 			setTimeout(checkForMatch, 500);
 		}
 	}
 
-	createYourBoard();
+	createBoard();
 });
